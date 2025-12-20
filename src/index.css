@@ -1,0 +1,108 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: monospace;
+	font-weight: bold;
+	color: gold;
+}
+.black {
+	background-color: black;
+}
+.red {
+	background-color: red;
+}
+.blue {
+	background-color: blue;
+}
+.center {
+	align-items: center;
+	justify-content: center;
+}
+.absolute {
+	position: absolute;
+}
+.thruster {
+	background-color: gold;
+	display: none;
+}
+.thruster.propelling {
+	display: inline;
+}
+#player1 {
+	font-size: 20px;
+}
+#player2 {
+	font-size: 20px;
+}
+#blade1 {
+	background-color: pink;
+}
+#blade1.propelling {
+	background-color: red;
+}
+#blade2 {
+	background-color: lightblue;
+}
+#blade2.propelling {
+	background-color: blue;
+}
+#field {
+	background-color: black;
+	position: relative;
+	box-sizing: border-box;
+	flex: 1 1 auto;
+	overflow: hidden;
+}
+#root {
+	box-sizing: border-box;
+	height: 100dvh;
+	width: 100%;
+	padding: 8px;
+}
+.flex {
+	display: flex;
+}
+.column {
+	flex-direction: column;
+}
+.row {
+	flex-direction: row;
+}
+.grow {
+	flex: 1 1 auto;
+	min-height: 0;
+}
+.hidden {
+	display: none;
+}
+.infobox {
+	gap: 20px;
+	width: 50%;
+}
+.gap {
+	gap: 20px;
+}
+#banner {
+	height: 100px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
+}
+#banner > * {
+	margin: 0;
+	justify-self: center;
+}
+button, input {
+	background-color: gold;
+	color: black;
+	font-family: monospace;
+	font-style: bold;
+	border-radius: 25px;
+}
+.offline {
+	background-color: gray;
+}
+.offfire {
+	background-color: red;
+}

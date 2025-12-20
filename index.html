@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="./src/index.css">
+		<title>Momento</title>
+        </head>
+        <body>
+		<div id="root" class="flex column">
+			<div id="banner" class="black">
+				<img src="./src/momento.svg" alt="Momento" width="auto" height="auto">
+				<h3 id="announcement">Who will win?</h3>
+				<div id="manage" class="flex column gap">
+					<button onClick="startGame()">Start Game</button>
+					<button id="savegame">Save Data</button>
+				</div>
+			</div>
+			<div id="infobar" class="flex row center">
+				<div id="infobox1" class="flex row grow center infobox gap red">
+					<h3>Guest</h3>
+					<h4>0</h4>
+				</div>
+				<div id="infobox2" class="flex row grow center infobox gap blue">
+					<h3>Guest</h3>
+					<h4>0</h4>
+				</div>
+			</div>
+			<div id="select" class="grow flex column">
+				<div id="instructions" class="flex center black">
+					How to play:<br>
+					Move your player with the first 4 controls given.<br>
+					Attract your blade to yourself with the last.<br>
+					Each player gets 5 lives.
+				</div>
+				<div class="grow flex row">
+					<div class="flex center column grow red">
+						<form id="pick1" class="flex column">
+							<label for="username">Username:</label>
+							<br>
+							<input type="text" id="username" name="username">
+							<br>
+							<input type="submit" value="Submit">
+						</form>
+						<p>Controls: a, w, d, s, lshift</p>
+					</div>
+					<div class="flex center column grow blue">
+						<form id="pick2" class="flex column">
+							<label for="username">Username:</label>
+							<br>
+							<input type="text" id="username" name="username">
+							<br>
+							<input type="submit" value="Submit">
+						</form>
+						<p>Controls: ←, ↑, →, ↓, rshift</p>
+					</div>
+				</div>
+			</div>
+			<div id="game" class="grow flex column">
+				<div id="field" class="relative grow">
+					<div id="player1" class="flex center absolute red">
+						<div class="absolute thruster"></div>
+						<div class="absolute thruster"></div>
+						<div class="absolute thruster"></div>
+						<div class="absolute thruster"></div>
+					</div>
+					<div id="player2" class="flex center absolute blue">
+						<div class="absolute thruster"></div>
+						<div class="absolute thruster"></div>
+						<div class="absolute thruster"></div>
+						<div class="absolute thruster"></div>
+					</div>
+					<div id="blade1" class="absolute"></div>
+					<div id="blade2" class="absolute"></div>
+				</div>
+			</div>
+		</div>
+                <script src="./src/game.js"></script>
+        </body>
+</html>
