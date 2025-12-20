@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeFirestore, persistentLocalCache } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,8 +14,19 @@ const firebaseConfig = {
 	appId: "1:736319476564:web:100e8212e38a72f093aec1"
 };
 
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+let app = null;
+let db = null;
+
+export function getDB() {
+	if (db) return db;
+
+	app = initializeApp(firebaseConfig);
+
+	db = initializeFirestore(app, {
+		localCache: persistentLocalCache()
+	});
+
+	return db;
+}
 
 console.log("firebase.js loaded", { app, db });

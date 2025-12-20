@@ -4,6 +4,7 @@
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="./src/index.css">
+		<link rel="icon" type="image/svg+xml" href="src/favicon.svg">
 		<title>Momento</title>
         </head>
         <body>
@@ -31,14 +32,16 @@
 					How to play:<br>
 					Move your player with the first 4 controls given.<br>
 					Attract your blade to yourself with the last.<br>
-					Each player gets 5 lives.
+					Each player gets 5 lives.<br><br>
+					Michael Martinez © 2025<br>
+					<button onClick="giveInfo()">More Info</button>
 				</div>
 				<div class="grow flex row">
 					<div class="flex center column grow red">
 						<form id="pick1" class="flex column">
 							<label for="username">Username:</label>
 							<br>
-							<input type="text" id="username" name="username">
+							<input type="text" id="username" name="username" placeholder="Guest">
 							<br>
 							<input type="submit" value="Submit">
 						</form>
@@ -48,7 +51,7 @@
 						<form id="pick2" class="flex column">
 							<label for="username">Username:</label>
 							<br>
-							<input type="text" id="username" name="username">
+							<input type="text" id="username" name="username" placeholder="Guest">
 							<br>
 							<input type="submit" value="Submit">
 						</form>

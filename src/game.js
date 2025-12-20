@@ -22,21 +22,24 @@ window.addEventListener('offline', () => {
 	console.log("Offline");
 });
 
-let profilesAPI;
+let profilesModule;
+import('./profiles.js').then((result) => {
+	profilesModule = result;
+});
 async function checkProfiles () {
 	if (!online) {
 		onfire = false;
 		return false;
 	}
 	
-	if (profilesAPI) {
+	if (profilesModule) {
 		onfire = true;
 		saveButtonUpdate();
 		return true;
 	}
 
 	try {
-		profilesAPI = await import('./profiles.js');
+		profilesModule = await import('./profiles.js');
 		onfire = true;
 		saveButtonUpdate();
 		return true;
@@ -49,24 +52,39 @@ async function checkProfiles () {
 };
 
 savebutton.addEventListener('click', async () => {
-	const ok = await checkProfiles();
+	const ok = checkProfiles();
 	if (!ok) {
 		savebutton.textContent = "Check Connection";
-		return;
+		throw new Error("Something's up, likely can't connect to Firebase");
 	}
-
-	await saveProfiles(profiles);
+	await profilesModule.saveProfiles(profiles);
+	console.log("Saved");
 	savebutton.textContent = "Data Saved";
 });
 
 // All of the elements needed
 const field = document.getElementById('field');
 const announcement = document.getElementById('announcement');
+const instructions = document.getElementById('instructions');
 
 const player1box = document.getElementById("player1");
 const player2box = document.getElementById("player2");
 const blade1box = document.getElementById("blade1");
 const blade2box = document.getElementById("blade2");
+
+function giveInfo () {
+	instructions.innerHTML = `More info:
+Profiles are saved through Firebase.<br>
+Please do not put sensitive information here.<br><br>
+
+Known issues:<br>
+Blade keeps attracting after shift is let go:<br>
+&emsp;This is an issue with your keyboard, tapping<br>
+&emsp;again ought to fix this.<br><br>
+
+This game is based on a Python program of the same name.<br>
+Michael Martinez © 2025`;
+}
 
 // For accessing just the players without needing to check properties
 const players = [
@@ -162,12 +180,27 @@ setInfo(2, profiles[1]);
 const pick1 = document.getElementById("pick1");
 const pick2 = document.getElementById("pick2");
 
+function getWins (name) {
+	return profilesModule.loadProfile(name).then((result) => {
+		console.log(result);
+		if (!result) {
+			console.log("No associated data found, returning 0");
+			return 0;
+		};
+		console.log("Data found, " + result.win_count);
+		return result.win_count;
+	});
+}
+
 pick1.addEventListener('submit', (e) => {
 	console.log("Handling submit");
 	e.preventDefault();
 	const data = new FormData(pick1);
 	profiles[0].name = String(data.get('username'));
-	setInfo(1, profiles[0]);
+	getWins(profiles[0].name).then((result) => {
+		profiles[0].win_count = result;
+		setInfo(1, profiles[0]);
+	});
 });
 
 pick2.addEventListener('submit', (e) => {
@@ -175,7 +208,10 @@ pick2.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const data = new FormData(pick2);
 	profiles[1].name = String(data.get('username'));
-	setInfo(2, profiles[1]);
+	getWins(profiles[1].name).then((result) => {
+                profiles[1].win_count = result;
+		setInfo(2, profiles[1]);
+        });
 });
 
 // Displays health into h3

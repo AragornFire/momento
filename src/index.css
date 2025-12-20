@@ -106,3 +106,6 @@ button, input {
 .offfire {
 	background-color: red;
 }
+#instructions {
+	padding: 8px;
+}
