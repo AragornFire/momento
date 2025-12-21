@@ -75,14 +75,15 @@ const blade2box = document.getElementById("blade2");
 function giveInfo () {
 	instructions.innerHTML = `More info:
 Profiles are saved through Firebase.<br>
-Please do not put sensitive information here.<br><br>
+Please do not put sensitive information here.<br>
+Make sure to click 'Save Data' if you want your stats saved.<br><br>
 
 Known issues:<br>
 Blade keeps attracting after shift is let go:<br>
 &emsp;This is an issue with your keyboard, tapping<br>
 &emsp;again ought to fix this.<br>
 Game plays at twice the normal speed:<br>
-&emsp;No known solution except starting the game again.<br><br>
+&emsp;No known solution except reloading the page.<br><br>
 
 This game is based on a Python program of the same name.<br>
 Michael Martinez © 2025`;

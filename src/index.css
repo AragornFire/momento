@@ -3,6 +3,7 @@ html, body {
 	padding: 0;
 	height: 100%;
 	font-family: monospace;
+	font-size: 16px;
 	font-weight: bold;
 	color: gold;
 }
@@ -97,6 +98,7 @@ button, input {
 	background-color: gold;
 	color: black;
 	font-family: monospace;
+	font-size: 16px;
 	font-style: bold;
 	border-radius: 25px;
 }
