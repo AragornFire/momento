@@ -80,7 +80,9 @@ Please do not put sensitive information here.<br><br>
 Known issues:<br>
 Blade keeps attracting after shift is let go:<br>
 &emsp;This is an issue with your keyboard, tapping<br>
-&emsp;again ought to fix this.<br><br>
+&emsp;again ought to fix this.<br>
+Game plays at twice the normal speed:<br>
+&emsp;No known solution except starting the game again.<br><br>
 
 This game is based on a Python program of the same name.<br>
 Michael Martinez © 2025`;
@@ -196,7 +198,22 @@ pick1.addEventListener('submit', (e) => {
 	console.log("Handling submit");
 	e.preventDefault();
 	const data = new FormData(pick1);
-	profiles[0].name = String(data.get('username'));
+	const username = String(data.get('username'));
+	const isValid = /^[A-Za-z0-9]+$/.test(username);
+	const button = pick1.children[4];
+	if (!isValid) {
+		button.value = "Letters/numbers only";
+		button.classList.add("blackerr");
+		throw new Error("Only letters and numbers please")
+	} else if (username.length > 15) {
+		button.value = "15 character max";
+		button.classList.add("blackerr");
+		throw new Error("Please no usernames over 15 characters");
+	} else {
+		button.value = "Submit";
+		button.classList.remove("blackerr");
+	};
+	profiles[0].name = username;
 	getWins(profiles[0].name).then((result) => {
 		profiles[0].win_count = result;
 		setInfo(1, profiles[0]);
@@ -207,7 +224,22 @@ pick2.addEventListener('submit', (e) => {
 	console.log("Handling submit");
 	e.preventDefault();
 	const data = new FormData(pick2);
-	profiles[1].name = String(data.get('username'));
+	const username = String(data.get('username'));
+	const isValid = /^[A-Za-z0-9]+$/.test(username);
+	const button = pick2.children[4];
+	if (!isValid) {
+		button.value = "Letters/numbers only";
+		button.classList.add("blackerr");
+		throw new Error("Only letters and numbers please")
+	} else if (username.length > 15) {
+		button.value = "15 character max";
+		button.classList.add("blackerr");
+		throw new Error("Please no usernames over 15 characters");
+	} else {
+		button.value = "Submit";
+		button.classList.remove("blackerr");
+	};
+	profiles[1].name = username;
 	getWins(profiles[1].name).then((result) => {
                 profiles[1].win_count = result;
 		setInfo(2, profiles[1]);

@@ -106,6 +106,10 @@ button, input {
 .offfire {
 	background-color: red;
 }
+.blackerr {
+	background-color: black;
+	color: gold;
+}
 #instructions {
 	padding: 8px;
 }
