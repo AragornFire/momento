@@ -86,6 +86,7 @@ Game plays at twice the normal speed:<br>
 &emsp;No known solution except reloading the page.<br><br>
 
 This game is based on a Python program of the same name.<br>
+The source code can be found <a href="https://github.com/AragornFire/momento">here</a>.
 Michael Martinez © 2025`;
 }
 
